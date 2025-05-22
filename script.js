@@ -1,40 +1,4 @@
-const sheetCsvUrl = 'https://docs.google.com/spreadsheets/d/SEU_ID/pub?output=csv';
-
-function getIdFromUrl() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get('id');
-}
-
-function csvToArray(str, delimiter = ',') {
-  const lines = str.trim().split('\n');
-  const headers = lines.shift().split(delimiter);
-  return lines.map(line => {
-    const data = line.split(delimiter);
-    return headers.reduce((obj, header, i) => {
-      obj[header] = data[i];
-      return obj;
-    }, {});
-  });
-}
-
-async function showUserStatus() {
-  const id = getIdFromUrl();
-  const resultDiv = document.getElementById('result');
-  if (!id) {
-    resultDiv.innerText = 'Por favor, informe o ID na URL. Exemplo: ?id=1';
-    return;
-  }
-  resultDiv.innerText = 'Carregando…';
-  try {
-    const response = await fetch(sheetCsvUrl);
-    const csv = await response.text();
-    const data = csvToArray(csv);
-    const user = data.find(item => item.id === id);
-    if (!user) {
-      resultDiv.innerText = 'Membro não encontrado.';
-      return;
-    }
-    const sheetCsvUrl = 'https://docs.google.com/spreadsheets/d/1-nbLr9U8EqzOKCEa56zJq50wwnL9CSd6/export?format=csv&gid=296187511';
+const sheetCsvUrl = 'https://docs.google.com/spreadsheets/d/1-nbLr9U8EqzOKCEa56zJq50wwnL9CSd6/export?format=csv&gid=296187511';
 
 function getIdFromUrl() {
   return new URLSearchParams(window.location.search).get('id');
@@ -66,26 +30,18 @@ async function showUserStatus() {
       resultDiv.innerText = 'Membro não encontrado.';
       return;
     }
+    let imgUrl = (user.Foto || '').trim();
+    const m = imgUrl.match(/"(https?:\/\/[^"]+)"/);
+    if (m) imgUrl = m[1];
     resultDiv.innerHTML = `
-    <div class="info5">
-        <img 
-          src="${user.Foto}" 
-          alt="Foto de ${user.Nome}" 
-          style="max-width:100%; height:auto; display:block; margin:8px auto;"
-        />
-      </div>
       <div class="info1"><b>Nome:</b> ${user.Nome}</div>
       <div class="info2"><b>Status:</b> ${user.Status}</div>
       <div class="info3"><b>RA:</b> ${user.RA}</div>
       <div class="info4"><b>Validade:</b> ${user.Validade}</div>
+      <div class="info5">
+        <img src="${imgUrl}" alt="Foto de ${user.Nome}" style="max-width:100%;height:auto;display:block;margin:8px auto;"/>
+      </div>
     `;
-  } catch {
-    resultDiv.innerText = 'Erro ao carregar os dados.';
-  }
-}
-
-showUserStatus();
-
   } catch {
     resultDiv.innerText = 'Erro ao carregar os dados.';
   }
