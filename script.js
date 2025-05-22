@@ -44,11 +44,13 @@
                     return;
                   }
 
-                  resultDiv.innerHTML = `
+                  resultDiv.innerHTML = ` 
+                  <div class="info">
       <div class="info1"><b>Nome:</b> ${user.Nome}</div>
       <div class="info2"><b>Status:</b> ${user.Status}</div>
       <div class="info3"><b>RA:</b> ${user.RA}</div>
       <div class="info4"><b>Validade:</b> ${user.Validade}</div>
+      </div>
     `;
                 } catch (err) {
                   console.error(err);
