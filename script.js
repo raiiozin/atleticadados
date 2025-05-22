@@ -46,7 +46,7 @@
 resultDiv.innerHTML = `
 <div class="info5">
     <img 
-      src="${user.Imagem}" 
+      src="${user.Foto}" 
       alt="Foto de ${user.Nome}" 
       style="max-width:100%;height:auto;"
     />
