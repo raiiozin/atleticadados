@@ -46,6 +46,7 @@
 
                   resultDiv.innerHTML = ` 
                   <div class="info">
+                  <div class="info0"><b>Foto:</b> ${user.Foto}</div>
       <div class="info1"><b>Nome:</b> ${user.Nome}</div>
       <div class="info2"><b>Status:</b> ${user.Status}</div>
       <div class="info3"><b>RA:</b> ${user.RA}</div>
