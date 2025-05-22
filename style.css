@@ -122,8 +122,36 @@ body {
 
 }
 
-.info{
-font-size: 20px;
+.info1{
+ display: flex;
+  font-size: 22px;
+  justify-content: center;
+  margin: 0;
+  
+
+}
+.info2{
+ display: flex;
+  font-size: 22px;
+  justify-content: center;
+  margin: 0;
+  
+
+}
+.info3{
+ display: flex;
+  font-size: 22px;
+  justify-content: center;
+  margin: 0;
+  
+
+}
+.info4{
+ display: flex;
+  font-size: 22px;
+  justify-content: center;
+  margin: 0;
+  
 
 }
 
