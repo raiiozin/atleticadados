@@ -11,15 +11,13 @@
       margin: 0;
     }
 
-    .info {
-     /*  margin-top: 1rem; */
-    }
+    .info {}
   </style>
   <link rel="stylesheet" type="text/css" href="style.css">
-  
- 
+
+
 </head>
- <section>
+<section>
   <div class="wave">
     <span></span>
     <span></span>
@@ -27,84 +25,27 @@
   </div>
   <div class="content">
     <h2>
-<body>
- 
-  <header>
-   
-    <h1 class="status">Status do Associado</h1>
 
-    <div id="result">Carregando...</div>
- <div class="card"> 
-    <script>
-      // URL da planilha publicada (CSV)
-      const sheetCsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS9rYtAt1C25ikgZsKJKpSPrsU9XO0xYfqT0aHaG8tb-U78Dc00dx2y1MG7gW9c7g/pub?output=csv';
+      <body>
 
-      // Função para pegar o parâmetro "id" da URL
-      function getIdFromUrl() {
-        const params = new URLSearchParams(window.location.search);
-        return params.get('id');
-      }
+        <header>
 
-      // Função para converter CSV em array de objetos
-      function csvToArray(str, delimiter = ',') {
-        const lines = str.trim().split('\n');
-        const headers = lines.shift().split(delimiter);
-        return lines.map(line => {
-          const data = line.split(delimiter);
-          return headers.reduce((obj, header, i) => {
-            obj[header.trim()] = data[i].trim();
-            return obj;
-          }, {});
-        });
-      }
+          <h1 class="status">Status do Associado</h1>
 
-      // Função principal
-    
+          <div id="result">Carregando...</div>
+          <div class="card">
+           
+            <div id="user-info"></div>
+          </div>
+        </header>
 
-      async function showUserStatus() {
-        const id = getIdFromUrl();
-      
-        const resultDiv = document.getElementById('result');
-        if (!id) {
-          resultDiv.innerText  = 'Por favor, informe o ID na URL. Exemplo: ?id=1';
-
-          return;
-        }
-
-        try {
-          const response = await fetch(sheetCsvUrl);
-          const csvText = await response.text();
-          const data = csvToArray(csvText);
-
-          const user = data.find(u => u.ID === id);
-          if (!user) {
-            resultDiv.innerText = 'Membro não encontrado.';
-            return;
-          }
-
-          // Mostra os dados do usuário
-          resultDiv.innerHTML = `
-      <div class="info1"><b>Nome:</b> ${user.Nome}</div>
-      <div class="info2"><b>Status:</b> ${user.Status}</div>
-      <div class="info3"><b>RA:</b> ${user.RA}</div>
-      <div class="info4"><b>Validade:</b> ${user.Validade}</div>
-    `;
-        } catch (err) {
-          console.error(err);
-          resultDiv.innerText = 'Erro ao carregar os dados.';
-        }
-      }
-
-      showUserStatus();
-    </script>
-    </div>
-  </header>
-
-  
+        
 
 
-</body>
-</h2>
+      </body>
+      <script src="script.js"></script>
+    </h2>
   </div>
 </section>
+
 </html>
