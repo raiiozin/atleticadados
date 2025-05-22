@@ -43,16 +43,21 @@
                     resultDiv.innerText = 'Membro não encontrado.';
                     return;
                   }
+resultDiv.innerHTML = `
+<div class="info5">
+    <img 
+      src="${user.Imagem}" 
+      alt="Foto de ${user.Nome}" 
+      style="max-width:100%;height:auto;"
+    />
+  </div>  
+<div class="info1"><b>Nome:</b> ${user.Nome}</div>
+  <div class="info2"><b>Status:</b> ${user.Status}</div>
+  <div class="info3"><b>RA:</b> ${user.RA}</div>
+  <div class="info4"><b>Validade:</b> ${user.Validade}</div>
+  
+`;
 
-                  resultDiv.innerHTML = ` 
-                  <div class="info">
-                  <div class="info0"><b>Foto:</b> ${user.Foto}</div>
-      <div class="info1"><b>Nome:</b> ${user.Nome}</div>
-      <div class="info2"><b>Status:</b> ${user.Status}</div>
-      <div class="info3"><b>RA:</b> ${user.RA}</div>
-      <div class="info4"><b>Validade:</b> ${user.Validade}</div>
-      </div>
-    `;
                 } catch (err) {
                   console.error(err);
                   resultDiv.innerText = 'Erro ao carregar os dados.';
