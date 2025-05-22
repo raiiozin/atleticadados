@@ -104,7 +104,6 @@ align-items: flex-start;
   height: 500px;
   border-radius: 30px;
   background: #004609 ;
-  
   box-shadow: 15px 15px 30px #7eff96,
              -15px -15px 30px #02c62d;
 }
