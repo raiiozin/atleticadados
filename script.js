@@ -71,7 +71,7 @@ async function showUserStatus() {
         <img 
           src="${user.Foto}" 
           alt="Foto de ${user.Nome}" 
-          style="max-width:100%; height:auto; display:block; margin:8px auto;"
+          
         />
       </div>
       <div class="info1"><b>Nome:</b> ${user.Nome}</div>
