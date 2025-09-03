@@ -124,16 +124,16 @@
 </div>
 
 <script>
-// URL da planilha publicada como CSV (substitua pela sua URL)
+// URL da planilha publicada como CSV - substitua pela sua URL CSV real
 const sheetCsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS9rYtAt1C25ikgZsKJKpSPrsU9XO0xYfqT0aHaG8tb-U78Dc00dx2y1MG7gW9c7g/pub?output=csv';
 
-// Função para pegar o parâmetro "id" da URL
+// Pega o parâmetro "id" da URL
 function getIdFromUrl() {
   const params = new URLSearchParams(window.location.search);
   return params.get('id');
 }
 
-// Função para converter CSV em array de objetos
+// Converte CSV para array de objetos
 function csvToArray(str, delimiter = ',') {
   const lines = str.trim().split('\n');
   const headers = lines.shift().split(delimiter);
@@ -146,9 +146,9 @@ function csvToArray(str, delimiter = ',') {
   });
 }
 
-// Função para criar o cartão HTML para o associado
+// Cria o cartão HTML para o associado
 function createCard(user) {
-  const avatarUrl = user.Avatar || 'https://i.imgur.com/3e1VeAe.png';
+  const avatarUrl = user.Foto || 'https://i.imgur.com/oCdNCAT.png';
 
   let tooltipText = '';
   if (user.Status.toLowerCase() === 'pago') {
@@ -167,7 +167,7 @@ function createCard(user) {
   card.innerHTML = `
     <h2>Status do Associado</h2>
     <div class="avatar">
-      <img src="${avatarUrl}" alt="Avatar associado ${user.Nome}" width="150" height="150">
+      <img src="${avatarUrl}" alt="Foto do associado ${user.Nome}" width="150" height="150" />
     </div>
     <div class="info">
       <p><strong>Nome:</strong> ${user.Nome}</p>
@@ -182,7 +182,7 @@ function createCard(user) {
   return card;
 }
 
-// Função principal para carregar e exibir o cartão do associado pelo ID
+// Carrega e exibe o cartão do associado pelo ID
 async function loadCardById() {
   const container = document.getElementById('card-container');
   const message = document.getElementById('message');
@@ -205,7 +205,6 @@ async function loadCardById() {
       return;
     }
 
-    // Limpa mensagem e adiciona o cartão
     container.innerHTML = '';
     const card = createCard(user);
     container.appendChild(card);
