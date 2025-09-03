@@ -73,9 +73,25 @@
     color: #adff2f;
   }
 
-  /* Status destacado */
-  .status {
+  /* Status verde para pago */
+  .status-pago {
     color: #00ff00;
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 1.5px;
+  }
+
+  /* Status vermelho para pendente */
+  .status-pendente {
+    color: #ff3300;
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 1.5px;
+  }
+
+  /* Status padrão */
+  .status {
+    color: #adff2f;
     font-weight: 700;
     font-size: 1.2rem;
     letter-spacing: 1.5px;
@@ -159,6 +175,9 @@ function createCard(user) {
     tooltipText = 'Status desconhecido.';
   }
 
+  const statusClass = user.Status.toLowerCase() === 'pago' ? 'status-pago' :
+                      user.Status.toLowerCase() === 'pendente' ? 'status-pendente' : 'status';
+
   const card = document.createElement('div');
   card.className = 'card';
   card.setAttribute('tabindex', '0');
@@ -171,7 +190,7 @@ function createCard(user) {
     </div>
     <div class="info">
       <p><strong>Nome:</strong> ${user.Nome}</p>
-      <p><strong>Status:</strong> <span class="status tooltip">${user.Status.toUpperCase()}
+      <p><strong>Status:</strong> <span class="${statusClass} tooltip">${user.Status.toUpperCase()}
         <span class="tooltip-text">${tooltipText}</span>
       </span></p>
       <p><strong>RA:</strong> ${user.RA || user.ID || ''}</p>
